@@ -33,19 +33,30 @@ const aeonik = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.viator.com"),
-  title: "Paris Tours, Excursions & Palace Day Trips | Viator",
+  metadataBase: new URL("https://www.campandexplorer.com"),
+  title: "Camp & Explorer | Mount Jali Outdoor Adventures & Cultural Experiences in Kigali, Rwanda",
   description:
-    "Find and book the best Paris tours, skip-the-line museum tickets, Versailles palace excursions, and River Seine cruises. Free cancellation on most activities.",
+    "Discover authentic Rwandan cultural experiences, agro-tourism workshops, and guided Mount Jali outdoor adventures in Kigali, Rwanda. Book flexible tours with free cancellation.",
   keywords: [
-    "Paris tours",
-    "Versailles palace tour",
-    "Louvre tickets",
-    "Seine cruise",
-    "Eiffel Tower tickets",
-    "Viator Paris",
+    "Camp & Explorer",
+    "Mount Jali hiking",
+    "Kigali tours",
+    "Rwanda cultural experiences",
+    "Kigali outdoor adventures",
+    "agro-tourism Rwanda",
+    "traditional Rwandan cuisine",
+    "banana beer brewing",
   ],
-  authors: [{ name: "Viator / TripAdvisor" }],
+  authors: [{ name: "Camp & Explorer" }],
+  openGraph: {
+    title: "Camp & Explorer | Culture & Nature in Kigali, Rwanda",
+    description:
+      "Guided mountain hikes, traditional cuisine, agro-tourism, and outdoor camping at Mount Jali, Kigali, Rwanda.",
+    url: "https://www.campandexplorer.com",
+    siteName: "Camp & Explorer",
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

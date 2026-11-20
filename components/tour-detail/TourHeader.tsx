@@ -14,7 +14,7 @@ export function TourHeader({ tour }: TourHeaderProps) {
 
   useEffect(() => {
     try {
-      const saved = JSON.parse(localStorage.getItem("viator_wishlist") || "[]");
+      const saved = JSON.parse(localStorage.getItem("camp_explorer_wishlist") || "[]");
       setIsFavorited(saved.includes(tour.id));
     } catch {
       setIsFavorited(false);
@@ -23,7 +23,7 @@ export function TourHeader({ tour }: TourHeaderProps) {
 
   const toggleFavorite = () => {
     try {
-      const saved: string[] = JSON.parse(localStorage.getItem("viator_wishlist") || "[]");
+      const saved: string[] = JSON.parse(localStorage.getItem("camp_explorer_wishlist") || "[]");
       let updated: string[];
       if (saved.includes(tour.id)) {
         updated = saved.filter((id) => id !== tour.id);
@@ -32,7 +32,7 @@ export function TourHeader({ tour }: TourHeaderProps) {
         updated = [...saved, tour.id];
         setIsFavorited(true);
       }
-      localStorage.setItem("viator_wishlist", JSON.stringify(updated));
+      localStorage.setItem("camp_explorer_wishlist", JSON.stringify(updated));
       window.dispatchEvent(new Event("wishlist_updated"));
     } catch (err) {
       console.error(err);

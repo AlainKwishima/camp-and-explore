@@ -42,8 +42,6 @@ export function TourCard({ tour }: TourCardProps) {
     }
   };
 
-  const isSpecialPDP = tour.slug === "versailles-palace-tour";
-
   return (
     <article className="group bg-white border border-neutral-200 rounded-xl overflow-hidden shadow-sm hover:shadow-cardHover transition-all flex flex-col h-full">
       {/* Tour Image Container */}
@@ -86,9 +84,9 @@ export function TourCard({ tour }: TourCardProps) {
           />
         </button>
 
-        {isSpecialPDP && (
+        {tour.slug === "mount-jali-hiking" && (
           <div className="absolute bottom-2.5 left-2.5 z-10 bg-brand-primary text-white text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded shadow-sm">
-            Interactive Product Page
+            Featured Experience
           </div>
         )}
       </div>

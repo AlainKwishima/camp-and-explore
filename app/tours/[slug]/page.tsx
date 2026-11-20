@@ -27,7 +27,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: TourPageProps): Promise<Metadata> {
   const { slug } = await params;
 
-  if (slug === "mount-jali-hiking" || slug === "versailles-palace-tour") {
+  if (slug === "mount-jali-hiking") {
     return {
       title: `${mountJaliTourData.title} | Camp & Explorer`,
       description: mountJaliTourData.description,
@@ -61,7 +61,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
   const { slug } = await params;
 
   // Primary rich tour data for Mount Jali Hiking
-  let tour = (slug === "mount-jali-hiking" || slug === "versailles-palace-tour") ? mountJaliTourData : null;
+  let tour = slug === "mount-jali-hiking" ? mountJaliTourData : null;
 
   // Fallback if another tour slug is clicked: adapt from basic tour
   if (!tour) {

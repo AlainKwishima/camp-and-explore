@@ -11,7 +11,7 @@ const config: Config = {
       colors: {
         brand: {
           DEFAULT: "#00875a",
-          primary: "#00875a", // Official Viator Emerald Green
+          primary: "#00875a", // Camp & Explorer Forest Green
           hover: "#00704a",
           dark: "#004f34",
           light: "#e6f3ee",

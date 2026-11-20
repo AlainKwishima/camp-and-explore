@@ -41,7 +41,7 @@ export function TourOverview({ tour }: TourOverviewProps) {
           </div>
           <div className="min-w-0">
             <span className="text-[10px] sm:text-[11px] text-neutral-500 block leading-tight truncate">Languages</span>
-            <span className="text-xs font-bold text-neutral-900 block truncate">English, French</span>
+            <span className="text-xs font-bold text-neutral-900 block truncate">English, Kinyarwanda, French</span>
           </div>
         </div>
 

@@ -122,7 +122,7 @@ export function FilterSidebar({
             <Search className="w-3.5 h-3.5 text-neutral-400 absolute left-2.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
-              placeholder="e.g. Versailles, Louvre, Seine..."
+              placeholder="e.g. Hiking, coffee, camping..."
               value={filters.searchQuery}
               onChange={(e) => onChange({ ...filters, searchQuery: e.target.value })}
               className="w-full pl-8 pr-2.5 py-1.5 text-xs border border-neutral-300 rounded-lg outline-none focus:ring-1 focus:ring-brand-primary"

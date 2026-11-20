@@ -26,10 +26,10 @@ export function TourGrid({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b border-neutral-200 gap-3">
         <div>
           <span className="text-xs sm:text-sm font-bold text-neutral-900 block sm:inline">
-            Showing {tours.length} of {totalCount} experiences in Paris
+            Showing {tours.length} of {totalCount} experiences at Mount Jali, Kigali
           </span>
           <p className="text-[11px] sm:text-xs text-neutral-500 mt-0.5">
-            Prices include taxes and booking fees. Free cancellation available on most tours.
+            Prices include all equipment and safety briefing. Free cancellation available on all activities.
           </p>
         </div>
 
