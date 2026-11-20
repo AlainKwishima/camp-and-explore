@@ -9,21 +9,21 @@ A high-performance, modern travel and tours discovery platform built with **Next
 
 ## Features
 
-- **Paris Tours & Excursions Catalog (`/`)**:
-  - Live header search bar with real-time client-side tour filtering.
-  - Faceted sidebar filters: keyword search, special highlights (Free Cancellation, Likely to Sell Out), category selectors, dynamic max price range slider, and traveler rating thresholds.
-  - Responsive tour card grid with 20 curated experiences, badges, durations, review ratings, pricing, and persistent wishlist favorites (`localStorage`).
+- **Mount Jali Experiences Catalog (`/`)**:
+  - Live header search bar with real-time client-side activity filtering.
+  - Faceted sidebar filters: keyword search, category selectors (*Adventure & Outdoors, Home Host & Culture, Agro-Tourism, Hiking & Trails*), dynamic price range slider, and traveler rating thresholds.
+  - Responsive experience card grid showcasing 13 authentic Rwandan activities (Mount Jali Guided Hiking, Traditional Cuisine, Banana Beer Brewing, Coffee Crop-to-Cup, Nature Camping, Archery, Mountain Biking, and more).
   - Mobile-first collapsible filter drawer for optimal small-screen viewing.
 
-- **Interactive Product Detail Page (`/tours/versailles-palace-tour`)**:
+- **Interactive Experience Detail Page (`/tours/mount-jali-hiking`)**:
   - **Photo Gallery & Lightbox**: 5-photo responsive mosaic with full-screen lightbox modal carousel supporting keyboard shortcuts (`←`, `→`, `Esc`) and thumbnail strip.
   - **Sticky Navigation Tabs**: Top scroll-spy navigation smoothly anchoring across *Overview*, *What's Included*, *Itinerary*, *Meeting Point*, *Reviews*, and *FAQs*.
-  - **Interactive Booking Widget**:
+  - **Interactive Booking Widget & Special Requirements Flow**:
     - Preset calendar date picker.
     - Guest incrementer (Adults & Children with automatic 25% discount).
-    - Multi-option package selector (*Half-Day Morning, Half-Day Afternoon, Full-Day Complete, Small-Group VIP*).
-    - Real-time dynamic total price calculation.
-    - Instant reservation confirmation modal.
+    - Multi-option package selector (*1–2 Hour Nature Walk, 3-Hour Scenic Summit Hike, Full Adventure Trek*).
+    - Comprehensive **Special Requirements & Additional Information** modal capturing dietary restrictions, food allergies, accessibility needs, and pre-tour preparation.
+    - Real-time dynamic total price calculation and persistent booking registration (`localStorage`).
   - **Itinerary Timeline**: Sequential accordion stops with admission indicators and expandable details.
   - **Traveler Reviews & Breakdown**: Score cards, 5-star distribution histograms, keyword search, and verified traveler filters.
   - **Mobile Sticky Bottom Bar**: Pinned booking CTA with safe-area insets.

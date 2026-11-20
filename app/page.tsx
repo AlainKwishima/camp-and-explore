@@ -12,7 +12,7 @@ const INITIAL_FILTERS: FilterState = {
   searchQuery: "",
   category: "",
   minPrice: 0,
-  maxPrice: 300,
+  maxPrice: 100,
   duration: [],
   minRating: 0,
   freeCancellationOnly: false,
@@ -90,9 +90,9 @@ export default function CatalogPage() {
         if (filters.sortBy === "price-asc") return a.price - b.price;
         if (filters.sortBy === "price-desc") return b.price - a.price;
         if (filters.sortBy === "rating") return b.rating - a.rating;
-        // Default "featured": prioritize Versailles tour and top rated
-        if (a.slug === "versailles-palace-tour") return -1;
-        if (b.slug === "versailles-palace-tour") return 1;
+        // Default "featured": prioritize Mount Jali hike and top rated
+        if (a.slug === "mount-jali-hiking") return -1;
+        if (b.slug === "mount-jali-hiking") return 1;
         return b.reviewCount - a.reviewCount;
       });
   }, [filters]);
@@ -107,20 +107,25 @@ export default function CatalogPage() {
         {/* Breadcrumb Trail */}
         <Breadcrumbs
           items={[
-            { label: "France", href: "/" },
-            { label: "Île-de-France", href: "/" },
-            { label: "Paris", href: "/" },
-            { label: "Paris Tours" },
+            { label: "Rwanda", href: "/" },
+            { label: "Kigali", href: "/" },
+            { label: "Gasabo", href: "/" },
+            { label: "Mount Jali Experiences" },
           ]}
         />
 
         {/* Clean Header Title */}
         <div className="pt-2 pb-6">
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight">
-            All Paris Tours & Excursions in 2026
+          <div className="inline-flex items-center space-x-2 text-xs font-bold text-brand-dark bg-brand-light px-3 py-1 rounded-full border border-brand-primary/20 mb-2">
+            <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
+            <span>Culture & Nature • Kigali Cultural Experience</span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight font-display">
+            Outdoor Adventures & Cultural Experiences at Mount Jali
           </h1>
-          <p className="text-xs sm:text-sm text-neutral-500 mt-1">
-            Top-rated sightseeing, skip-the-line admissions, and day trips in Paris and Île-de-France.
+          <p className="text-xs sm:text-sm text-neutral-500 mt-1 max-w-3xl">
+            Discover authentic Rwandan heritage, agro-tourism workshops, and guided mountain adventures in Mount Jali,
+            Gasabo District, Kigali. Ideal for travelers, couples, families, and private groups.
           </p>
         </div>
 
@@ -142,30 +147,34 @@ export default function CatalogPage() {
           />
         </div>
 
-        {/* Informative Paris Travel Guide Section */}
+        {/* Informative Camp & Explorer Visitor Guide Section */}
         <section className="mt-16 sm:mt-20 pt-8 sm:pt-12 border-t border-neutral-200">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-xl sm:text-2xl font-bold text-neutral-900 mb-4">
-              Planning Your Paris Excursions & Day Trips
+            <h2 className="text-xl sm:text-2xl font-bold text-neutral-900 mb-4 font-display">
+              Planning Your Visit to Camp & Explorer (Mount Jali, Kigali)
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-neutral-600 leading-relaxed">
               <div>
                 <h3 className="font-bold text-neutral-800 text-xs sm:text-sm mb-2 flex items-center">
                   <MapPin className="w-4 h-4 text-brand-primary mr-1.5 flex-shrink-0" />
-                  <span>Why Book Ahead in Paris?</span>
+                  <span>How to Get to Camp & Explorer</span>
                 </h3>
                 <p>
-                  Major Parisian monuments—including the Palace of Versailles, the Louvre Museum, the Catacombs, and the Eiffel Tower summit—strictly mandate timed reservations. Booking verified guided tours guarantees your time slot, skips general ticket queues, and offers expert historical narratives.
+                  Camp & Explorer is situated on Mount Jali in Jali Sector, Gasabo District—just a 15-minute scenic drive
+                  north of Nyabugogo and central Kigali. Accessible by private car, taxi, or motorcycle. Round-trip hotel
+                  transfers are readily arranged upon request via WhatsApp (+250 788 621 474).
                 </p>
               </div>
 
               <div>
                 <h3 className="font-bold text-neutral-800 text-xs sm:text-sm mb-2 flex items-center">
                   <Compass className="w-4 h-4 text-brand-primary mr-1.5 flex-shrink-0" />
-                  <span>Top Day Trips Beyond Paris</span>
+                  <span>Custom Packages for Groups & Hotels</span>
                 </h3>
                 <p>
-                  While central Paris holds boundless charm, legendary destinations like Versailles, Monet’s Giverny gardens, the Mont-Saint-Michel abbey, and Champagne vineyards are all within easy reach via comfortable executive coaches.
+                  We welcome private groups, team-building retreats, school excursions, and hotel partnerships. Activities
+                  such as hiking, banana brewing, traditional cooking, and camping can be combined into custom half-day or
+                  full-day itineraries with bespoke catering.
                 </p>
               </div>
             </div>

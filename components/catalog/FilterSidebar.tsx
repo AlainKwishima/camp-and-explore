@@ -13,15 +13,10 @@ interface FilterSidebarProps {
 
 const CATEGORIES = [
   "All Categories",
-  "Day Trips",
-  "Historical Tours",
-  "Cultural & Theme Tours",
-  "Palaces & Castles",
-  "Museums & Art",
-  "Cruises & Water Tours",
-  "Walking Tours",
-  "Food, Wine & Nightlife",
-  "Sightseeing",
+  "Adventure & Outdoors",
+  "Home Host & Culture",
+  "Agro-Tourism",
+  "Hiking & Trails",
 ];
 
 const RATINGS = [
@@ -195,23 +190,23 @@ export function FilterSidebar({
         <div className="space-y-2.5 pb-4 border-b border-neutral-200">
           <div className="flex items-center justify-between">
             <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-700">Max Price</h3>
-            <span className="text-xs font-bold text-neutral-900 bg-neutral-100 px-2 py-0.5 rounded">
+            <span className="text-xs font-bold text-neutral-900 bg-neutral-100 px-2 py-0.5 rounded font-display">
               Up to ${filters.maxPrice}
             </span>
           </div>
           <input
             type="range"
-            min="20"
-            max="300"
-            step="10"
+            min="15"
+            max="100"
+            step="5"
             value={filters.maxPrice}
             onChange={(e) => handlePriceChange(Number(e.target.value))}
             className="w-full accent-brand-primary cursor-pointer"
           />
-          <div className="flex justify-between text-[11px] text-neutral-500">
-            <span>$20</span>
-            <span>$150</span>
-            <span>$300+</span>
+          <div className="flex justify-between text-[11px] text-neutral-500 font-medium">
+            <span>$15</span>
+            <span>$50</span>
+            <span>$100</span>
           </div>
         </div>
 

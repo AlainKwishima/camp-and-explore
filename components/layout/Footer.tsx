@@ -60,55 +60,70 @@ export function Footer() {
 
       {/* Main Footer Links */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-white font-bold text-xs uppercase tracking-wider mb-4">About Viator</h3>
+            <h3 className="text-white font-bold text-xs uppercase tracking-wider mb-4">Camp & Explorer</h3>
+            <p className="text-xs text-neutral-400 leading-relaxed mb-3">
+              Culture & Nature | Kigali Cultural Experience. Community-led eco-tourism, agro-experiences, and outdoor adventures at Mount Jali.
+            </p>
+            <div className="text-xs text-neutral-400 space-y-1">
+              <p className="text-white font-medium">Mount Jali, Jali–Gasabo</p>
+              <p>Kigali, Rwanda</p>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="text-white font-bold text-xs uppercase tracking-wider mb-4">Our Experiences</h3>
             <ul className="space-y-2.5 text-xs text-neutral-400">
-              <li><Link href="/" className="hover:text-white transition-colors">About Us</Link></li>
-              <li><Link href="/" className="hover:text-white transition-colors">Careers</Link></li>
-              <li><Link href="/" className="hover:text-white transition-colors">Press & Media</Link></li>
-              <li><Link href="/" className="hover:text-white transition-colors">Investor Relations</Link></li>
-              <li><Link href="/" className="hover:text-white transition-colors">Viator Blog</Link></li>
+              <li><Link href="/tours/mount-jali-hiking" className="hover:text-white transition-colors">Mount Jali Guided Hiking</Link></li>
+              <li><Link href="/tours/traditional-cuisine-experience" className="hover:text-white transition-colors">Traditional Rwandan Cuisine</Link></li>
+              <li><Link href="/tours/banana-brewing-experience" className="hover:text-white transition-colors">Banana Beer Brewing (Urwagwa)</Link></li>
+              <li><Link href="/tours/coffee-crop-to-cup" className="hover:text-white transition-colors">Coffee Crop-to-Cup Experience</Link></li>
+              <li><Link href="/tours/mount-jali-camping" className="hover:text-white transition-colors">Overnight Nature Camping</Link></li>
+              <li><Link href="/tours/archery-experience" className="hover:text-white transition-colors">Target Archery & Biking</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-white font-bold text-xs uppercase tracking-wider mb-4">Customer Care</h3>
+            <h3 className="text-white font-bold text-xs uppercase tracking-wider mb-4">Contact & Inquiries</h3>
             <ul className="space-y-2.5 text-xs text-neutral-400">
-              <li><Link href="/" className="hover:text-white transition-colors">Help Center & FAQ</Link></li>
-              <li><Link href="/" className="hover:text-white transition-colors">Cancellation Options</Link></li>
-              <li><Link href="/" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/" className="hover:text-white transition-colors">Terms & Conditions</Link></li>
-              <li><Link href="/" className="hover:text-white transition-colors">Site Map</Link></li>
+              <li>
+                <span className="text-neutral-500 block text-[11px]">WhatsApp & Phone</span>
+                <a href="tel:+250788621474" className="hover:text-white transition-colors font-mono">+250 788 621 474</a>
+              </li>
+              <li>
+                <span className="text-neutral-500 block text-[11px]">Alternative Line</span>
+                <a href="tel:+250728421419" className="hover:text-white transition-colors font-mono">+250 728 421 419</a>
+              </li>
+              <li>
+                <span className="text-neutral-500 block text-[11px]">Email Inquiries</span>
+                <a href="mailto:campexp18@gmail.com" className="hover:text-white transition-colors">campexp18@gmail.com</a>
+              </li>
+              <li>
+                <span className="text-neutral-500 block text-[11px]">Official Website</span>
+                <a href="https://www.campandexplorer.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">www.campandexplorer.com</a>
+              </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-white font-bold text-xs uppercase tracking-wider mb-4">Top Destinations</h3>
+            <h3 className="text-white font-bold text-xs uppercase tracking-wider mb-4">Hotels & Partnerships</h3>
+            <p className="text-xs text-neutral-400 leading-relaxed mb-3">
+              We welcome hotel partnerships, tour operators, school field trips, and corporate retreat inquiries.
+            </p>
             <ul className="space-y-2.5 text-xs text-neutral-400">
-              <li><Link href="/" className="hover:text-white transition-colors">Paris Tours</Link></li>
-              <li><Link href="/tours/versailles-palace-tour" className="hover:text-white transition-colors">Versailles Palace Excursions</Link></li>
-              <li><Link href="/" className="hover:text-white transition-colors">Rome & Vatican City</Link></li>
-              <li><Link href="/" className="hover:text-white transition-colors">London Sightseeing</Link></li>
-              <li><Link href="/" className="hover:text-white transition-colors">New York City Tours</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-white font-bold text-xs uppercase tracking-wider mb-4">Partner With Us</h3>
-            <ul className="space-y-2.5 text-xs text-neutral-400">
-              <li><Link href="/" className="hover:text-white transition-colors">Supplier Sign-Up</Link></li>
-              <li><Link href="/" className="hover:text-white transition-colors">Travel Agents (TAP)</Link></li>
-              <li><Link href="/" className="hover:text-white transition-colors">Affiliate Program</Link></li>
-              <li><Link href="/" className="hover:text-white transition-colors">Influencer Partnerships</Link></li>
+              <li><Link href="/" className="hover:text-white transition-colors">Hotel Package Combinations</Link></li>
+              <li><Link href="/" className="hover:text-white transition-colors">Team Building Retreats</Link></li>
+              <li><Link href="/" className="hover:text-white transition-colors">Booking & Cancellation Terms</Link></li>
+              <li><Link href="/" className="hover:text-white transition-colors">Community Impact Initiatives</Link></li>
             </ul>
           </div>
         </div>
 
         {/* Bottom Disclaimer */}
         <div className="mt-12 pt-8 border-t border-neutral-800 text-xs text-neutral-500 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-          <p>© 2026 Viator, Inc. A TripAdvisor Company. All rights reserved.</p>
-          <p>Preserving authentic Viator UI, design system tokens, and responsive layout standards.</p>
+          <p>© 2026 Camp & Explorer. All rights reserved. Jali–Gasabo, Kigali, Rwanda.</p>
+          <p>Culture & Nature Experience Platform • Built with Next.js & React</p>
         </div>
       </div>
     </footer>

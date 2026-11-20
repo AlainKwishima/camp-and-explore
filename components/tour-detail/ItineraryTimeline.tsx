@@ -5,11 +5,15 @@ import { ItineraryStop } from "@/types/tour";
 import { Clock, Ticket, ChevronDown, ChevronUp } from "lucide-react";
 
 interface ItineraryTimelineProps {
-  stops: ItineraryStop[];
-  totalDuration: string;
+  stops?: ItineraryStop[];
+  itinerary?: ItineraryStop[];
+  totalDuration?: string;
 }
 
-export function ItineraryTimeline({ stops, totalDuration }: ItineraryTimelineProps) {
+export function ItineraryTimeline({ stops, itinerary, totalDuration }: ItineraryTimelineProps) {
+  const stopsList = stops || itinerary || [];
+  const durationText = totalDuration || "2 to 4 hours";
+
   // Store expanded state per stop; first 3 open by default
   const [openStops, setOpenStops] = useState<Record<number, boolean>>({
     0: true,
@@ -29,13 +33,13 @@ export function ItineraryTimeline({ stops, totalDuration }: ItineraryTimelinePro
         <div>
           <h2 className="text-base sm:text-lg font-bold text-neutral-900">Tour Itinerary</h2>
           <p className="text-xs text-neutral-500 mt-1">
-            Total duration: {totalDuration} • {stops.length} major stops and landmarks
+            Total duration: {durationText} • {stopsList.length} major stops and landmarks
           </p>
         </div>
       </div>
 
       <div className="relative pl-8 sm:pl-10 space-y-5 before:absolute before:left-[13px] before:top-3 before:bottom-3 before:w-[2px] before:bg-neutral-200">
-        {stops.map((stop, idx) => {
+        {stopsList.map((stop, idx) => {
           const isOpen = !!openStops[idx];
           return (
             <div key={stop.stopNumber} className="relative group">

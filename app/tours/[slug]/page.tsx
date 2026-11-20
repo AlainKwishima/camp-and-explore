@@ -1,7 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { versaillesTourData } from "@/data/versaillesTour";
+import { mountJaliTourData } from "@/data/mountJaliTour";
 import { toursList } from "@/data/tours";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { TourHeader } from "@/components/tour-detail/TourHeader";
@@ -26,14 +26,15 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: TourPageProps): Promise<Metadata> {
   const { slug } = await params;
-  if (slug === "versailles-palace-tour") {
+
+  if (slug === "mount-jali-hiking" || slug === "versailles-palace-tour") {
     return {
-      title: `${versaillesTourData.title} | Viator`,
-      description: versaillesTourData.description,
+      title: `${mountJaliTourData.title} | Camp & Explorer`,
+      description: mountJaliTourData.description,
       openGraph: {
-        title: versaillesTourData.title,
-        description: versaillesTourData.description,
-        images: [versaillesTourData.featuredImage],
+        title: mountJaliTourData.title,
+        description: mountJaliTourData.description,
+        images: [mountJaliTourData.featuredImage],
       },
     };
   }
@@ -41,21 +42,26 @@ export async function generateMetadata({ params }: TourPageProps): Promise<Metad
   const basicTour = toursList.find((t) => t.slug === slug);
   if (basicTour) {
     return {
-      title: `${basicTour.title} | Viator`,
+      title: `${basicTour.title} | Camp & Explorer`,
       description: basicTour.description,
+      openGraph: {
+        title: basicTour.title,
+        description: basicTour.description,
+        images: [basicTour.featuredImage],
+      },
     };
   }
 
   return {
-    title: "Tour Not Found | Viator",
+    title: "Experience Not Found | Camp & Explorer",
   };
 }
 
 export default async function TourDetailPage({ params }: TourPageProps) {
   const { slug } = await params;
 
-  // Primary rich tour data for the Versailles Palace Tour
-  let tour = slug === "versailles-palace-tour" ? versaillesTourData : null;
+  // Primary rich tour data for Mount Jali Hiking
+  let tour = (slug === "mount-jali-hiking" || slug === "versailles-palace-tour") ? mountJaliTourData : null;
 
   // Fallback if another tour slug is clicked: adapt from basic tour
   if (!tour) {
@@ -63,7 +69,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
     if (!basic) notFound();
 
     tour = {
-      ...versaillesTourData,
+      ...mountJaliTourData,
       id: basic.id,
       slug: basic.slug,
       title: basic.title,
@@ -74,13 +80,43 @@ export default async function TourDetailPage({ params }: TourPageProps) {
       duration: basic.duration,
       price: basic.price,
       featuredImage: basic.featuredImage,
-      images: [basic.featuredImage, ...versaillesTourData.images.slice(1)],
+      images: [basic.featuredImage, ...mountJaliTourData.images.slice(1)],
       categories: basic.categories,
       highlights: basic.highlights,
+      packageOptions: [
+        {
+          id: `${basic.id}-opt-1`,
+          title: "Standard Guided Experience",
+          duration: basic.duration,
+          startTime: "09:00 AM",
+          price: basic.price,
+          description: `Full guided ${basic.title} with experienced Camp & Explorer local hosts and materials included.`,
+          features: [
+            "All equipment & workshop materials included",
+            "Expert local guide & cultural storytelling",
+            "Snacks and refreshments at Camp & Explorer",
+            "Free cancellation up to 24h before",
+          ],
+        },
+        {
+          id: `${basic.id}-opt-2`,
+          title: "Extended VIP / Afternoon Session",
+          duration: basic.duration,
+          startTime: "02:00 PM",
+          price: Number((basic.price * 1.35).toFixed(2)),
+          description: `Extended private session with dedicated host, complimentary take-home gift, and full afternoon tasting platter.`,
+          features: [
+            "Private dedicated instructor / host",
+            "Complimentary artisanal souvenir / tasting pack",
+            "Full tasting platter & beverages",
+            "Flexible pace and custom photo stops",
+          ],
+        },
+      ],
     };
   }
 
-  const primaryCategory = tour.categories[0] || "Tours";
+  const primaryCategory = tour.categories[0] || "Experiences";
 
   return (
     <div className="min-h-screen bg-white pb-28 lg:pb-16">
@@ -88,8 +124,9 @@ export default async function TourDetailPage({ params }: TourPageProps) {
         {/* Dynamic Breadcrumb Trail */}
         <Breadcrumbs
           items={[
-            { label: "France", href: "/" },
-            { label: "Paris", href: "/" },
+            { label: "Rwanda", href: "/" },
+            { label: "Kigali", href: "/" },
+            { label: "Mount Jali", href: "/" },
             { label: primaryCategory, href: "/" },
             { label: tour.title },
           ]}
@@ -108,26 +145,34 @@ export default async function TourDetailPage({ params }: TourPageProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start mt-6">
           {/* Left Column: Tour Details (~67% width on desktop) */}
           <div className="lg:col-span-8 space-y-2 min-w-0">
+            {/* 1. Overview */}
             <TourOverview tour={tour} />
+
+            {/* 2. Inclusions & Exclusions */}
             <InclusionsExclusions
               inclusions={tour.inclusions}
               exclusions={tour.exclusions}
             />
-            <ItineraryTimeline
-              stops={tour.itinerary}
-              totalDuration={tour.duration}
-            />
-            <MeetingPickup details={tour.departureDetails} />
+
+            {/* 3. Itinerary Timeline */}
+            <ItineraryTimeline stops={tour.itinerary} totalDuration={tour.duration} />
+
+            {/* 4. Meeting & Pickup Details */}
+            <MeetingPickup departureDetails={tour.departureDetails} />
+
+            {/* 5. Traveler Reviews & Breakdown */}
             <ReviewsSection
+              reviews={tour.reviewsList}
               rating={tour.rating}
               reviewCount={tour.reviewCount}
-              reviews={tour.reviewsList}
             />
+
+            {/* 6. Frequently Asked Questions */}
             <FaqAccordion faqs={tour.faqs} />
           </div>
 
           {/* Right Column: Sticky Booking Widget (~33% width on desktop) */}
-          <div id="booking-section" className="lg:col-span-4 scroll-mt-28">
+          <div className="lg:col-span-4 min-w-0">
             <BookingWidget
               packageOptions={tour.packageOptions}
               basePrice={tour.price}
@@ -137,7 +182,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
         </div>
       </div>
 
-      {/* Mobile Sticky Bottom Booking Bar */}
+      {/* Mobile Sticky Bottom CTA Bar */}
       <StickyMobileBar price={tour.price} />
     </div>
   );

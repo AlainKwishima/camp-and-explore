@@ -71,7 +71,7 @@ export function Navbar() {
               <Search className="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
-                placeholder="Search tours, activities..."
+                placeholder="Search activities (hiking, coffee, cuisine, camping)..."
                 value={query}
                 onChange={(e) => handleSearchChange(e.target.value)}
                 className="w-full pl-9 sm:pl-10 pr-9 py-2 text-xs sm:text-sm bg-neutral-50 hover:bg-neutral-100/80 focus:bg-white border border-neutral-300 focus:border-brand-primary rounded-full outline-none transition-all placeholder:text-neutral-400 text-neutral-800 shadow-xs"

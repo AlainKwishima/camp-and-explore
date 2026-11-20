@@ -15,7 +15,7 @@ export function TourCard({ tour }: TourCardProps) {
 
   useEffect(() => {
     try {
-      const saved = JSON.parse(localStorage.getItem("viator_wishlist") || "[]");
+      const saved = JSON.parse(localStorage.getItem("camp_explorer_wishlist") || "[]");
       setIsFavorited(saved.includes(tour.id));
     } catch {
       setIsFavorited(false);
@@ -26,7 +26,7 @@ export function TourCard({ tour }: TourCardProps) {
     e.preventDefault();
     e.stopPropagation();
     try {
-      const saved: string[] = JSON.parse(localStorage.getItem("viator_wishlist") || "[]");
+      const saved: string[] = JSON.parse(localStorage.getItem("camp_explorer_wishlist") || "[]");
       let updated: string[];
       if (saved.includes(tour.id)) {
         updated = saved.filter((id) => id !== tour.id);
@@ -35,7 +35,7 @@ export function TourCard({ tour }: TourCardProps) {
         updated = [...saved, tour.id];
         setIsFavorited(true);
       }
-      localStorage.setItem("viator_wishlist", JSON.stringify(updated));
+      localStorage.setItem("camp_explorer_wishlist", JSON.stringify(updated));
       window.dispatchEvent(new Event("wishlist_updated"));
     } catch (err) {
       console.error("Wishlist error", err);
