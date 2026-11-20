@@ -48,6 +48,15 @@ export const metadata: Metadata = {
     "banana beer brewing",
   ],
   authors: [{ name: "Camp & Explorer" }],
+  icons: {
+    icon: [
+      { url: "/images/logo.jpg" },
+      { url: "/images/logo.jpg", sizes: "32x32", type: "image/jpeg" },
+      { url: "/images/logo.jpg", sizes: "192x192", type: "image/jpeg" },
+    ],
+    shortcut: "/images/logo.jpg",
+    apple: "/images/logo.jpg",
+  },
   openGraph: {
     title: "Camp & Explorer | Culture & Nature in Kigali, Rwanda",
     description:
