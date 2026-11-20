@@ -116,16 +116,11 @@ export default function CatalogPage() {
 
         {/* Clean Header Title */}
         <div className="pt-2 pb-6">
-          <div className="inline-flex items-center space-x-2 text-xs font-bold text-brand-dark bg-brand-light px-3 py-1 rounded-full border border-brand-primary/20 mb-2">
-            <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
-            <span>Culture & Nature • Kigali Cultural Experience</span>
-          </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight font-display">
-            Outdoor Adventures & Cultural Experiences at Mount Jali
+            Outdoor Adventures & Cultural Activities at Mount Jali
           </h1>
-          <p className="text-xs sm:text-sm text-neutral-500 mt-1 max-w-3xl">
-            Discover authentic Rwandan heritage, agro-tourism workshops, and guided mountain adventures in Mount Jali,
-            Gasabo District, Kigali. Ideal for travelers, couples, families, and private groups.
+          <p className="text-xs sm:text-sm text-neutral-500 mt-1 max-w-2xl">
+            Guided mountain hikes, agro-tourism workshops, and authentic cultural activities in Kigali.
           </p>
         </div>
 
