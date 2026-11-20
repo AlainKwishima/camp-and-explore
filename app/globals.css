@@ -84,3 +84,8 @@
 .shadow-card-elevated {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
+
+/* When modal is open, ensure sticky bottom bar is hidden */
+body[data-modal-open="true"] [data-sticky-mobile-bar] {
+  display: none !important;
+}

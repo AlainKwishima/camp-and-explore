@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { TourDetail } from "@/types/tour";
-import { Star, MapPin, Share2, Heart, Award, Sparkles, Check } from "lucide-react";
+import { Star, MapPin, Share2, Heart, Award, Flame, Check } from "lucide-react";
 
 interface TourHeaderProps {
   tour: TourDetail;
@@ -59,7 +59,7 @@ export function TourHeader({ tour }: TourHeaderProps) {
         )}
         {tour.badges.includes("Likely to Sell Out") && (
           <span className="inline-flex items-center space-x-1.5 bg-brand-accent text-white px-2.5 py-1 rounded-md text-xs font-bold shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 fill-current flex-shrink-0" />
+            <Flame className="w-3.5 h-3.5 fill-current flex-shrink-0" />
             <span>Likely to Sell Out</span>
           </span>
         )}

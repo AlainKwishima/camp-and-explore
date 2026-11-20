@@ -31,6 +31,8 @@ export function lockBodyScroll() {
     // Completely lock both body and documentElement to prevent scroll/bounce
     body.style.overflow = "hidden";
     docEl.style.overflow = "hidden";
+    body.setAttribute("data-modal-open", "true");
+    window.dispatchEvent(new CustomEvent("modal_visibility_change", { detail: { isOpen: true } }));
   }
 
   activeLocks++;
@@ -48,6 +50,8 @@ export function unlockBodyScroll() {
     body.style.overflow = previousBodyOverflow;
     docEl.style.overflow = previousHtmlOverflow;
     body.style.paddingRight = previousBodyPaddingRight;
+    body.removeAttribute("data-modal-open");
+    window.dispatchEvent(new CustomEvent("modal_visibility_change", { detail: { isOpen: false } }));
   }
 }
 

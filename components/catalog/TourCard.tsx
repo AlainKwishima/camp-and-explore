@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Tour } from "@/types/tour";
-import { Star, Clock, Check, Heart, Sparkles, Award } from "lucide-react";
+import { Star, Clock, Check, Heart, Flame, Award } from "lucide-react";
 
 interface TourCardProps {
   tour: Tour;
@@ -58,7 +58,7 @@ export function TourCard({ tour }: TourCardProps) {
         <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 z-10">
           {tour.badges.includes("Likely to Sell Out") && (
             <span className="inline-flex items-center space-x-1 bg-brand-accent text-white text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded shadow-sm">
-              <Sparkles className="w-3 h-3 fill-current flex-shrink-0" />
+              <Flame className="w-3 h-3 fill-current flex-shrink-0" />
               <span>Likely to Sell Out</span>
             </span>
           )}

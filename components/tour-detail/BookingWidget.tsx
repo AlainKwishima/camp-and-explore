@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useId, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { PackageOption, CustomerBooking, SpecialRequirements } from "@/types/tour";
 import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
 import {
@@ -9,7 +10,8 @@ import {
   ShieldCheck,
   CheckCircle2,
   Clock,
-  Sparkles,
+  CalendarCheck,
+  ClipboardList,
   ChevronDown,
   ChevronUp,
   X,
@@ -75,8 +77,13 @@ export function BookingWidget({ packageOptions, basePrice, tourTitle }: BookingW
   const [showTravelerPicker, setShowTravelerPicker] = useState<boolean>(false);
 
   // Modal states
+  const [mounted, setMounted] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalStep, setModalStep] = useState<"form" | "confirmed">("form");
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Form Fields - Contact
   const [fullName, setFullName] = useState<string>("");
@@ -531,7 +538,7 @@ export function BookingWidget({ packageOptions, basePrice, tourTitle }: BookingW
         onClick={handleOpenBookingModal}
         className="w-full py-3.5 px-4 bg-brand-primary hover:bg-brand-hover text-white text-sm font-extrabold rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 active:scale-[0.99]"
       >
-        <Sparkles className="w-4 h-4 fill-current" />
+        <CalendarCheck className="w-4 h-4" />
         <span>Reserve Now & Pay Later</span>
       </button>
 
@@ -547,8 +554,8 @@ export function BookingWidget({ packageOptions, basePrice, tourTitle }: BookingW
         </div>
       </div>
 
-      {/* POPUP MODAL: Scroll-Locked Background Overlay */}
-      {isModalOpen && (
+      {/* POPUP MODAL: Scroll-Locked Background Overlay Portaled to document.body */}
+      {isModalOpen && mounted && typeof document !== "undefined" && createPortal(
         <div
           role="dialog"
           aria-modal="true"
@@ -559,14 +566,14 @@ export function BookingWidget({ packageOptions, basePrice, tourTitle }: BookingW
               setIsModalOpen(false);
             }
           }}
-          className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm overflow-y-auto overscroll-contain p-3 sm:p-5 flex items-center justify-center animate-fadeIn"
+          className="fixed inset-0 z-[100] bg-black/75 backdrop-blur-sm overflow-y-auto overscroll-contain p-2.5 sm:p-5 flex items-center justify-center animate-fadeIn"
         >
           <div
             id="booking-modal-dialog"
-            className="bg-white rounded-2xl w-full max-w-2xl max-h-[92vh] flex flex-col shadow-2xl border border-neutral-200 overflow-hidden my-auto"
+            className="bg-white rounded-2xl w-full max-w-2xl max-h-[92vh] sm:max-h-[88vh] flex flex-col shadow-2xl border border-neutral-200 overflow-hidden my-auto"
           >
             {/* Modal Fixed Header */}
-            <div className="px-5 sm:px-6 py-4 border-b border-neutral-200 bg-white flex items-center justify-between sticky top-0 z-20">
+            <div className="px-5 sm:px-6 py-4 border-b border-neutral-200 bg-white flex items-center justify-between sticky top-0 z-20 flex-shrink-0">
               <div className="min-w-0 pr-4">
                 <div className="flex items-center space-x-2">
                   <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse" />
@@ -591,10 +598,11 @@ export function BookingWidget({ packageOptions, basePrice, tourTitle }: BookingW
               </button>
             </div>
 
-            {/* Modal Scrollable Body */}
-            <div id="booking-modal-body" className="p-5 sm:p-6 overflow-y-auto flex-1 space-y-6">
-              {modalStep === "form" ? (
-                <form onSubmit={handleSubmitBooking} className="space-y-6">
+            {/* Modal Content */}
+            {modalStep === "form" ? (
+              <form onSubmit={handleSubmitBooking} className="flex flex-col flex-1 min-h-0 overflow-hidden">
+                {/* Modal Scrollable Body */}
+                <div id="booking-modal-body" className="p-5 sm:p-6 overflow-y-auto flex-1 space-y-6 overscroll-contain">
                   {/* Trip Summary Card */}
                   <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-4 text-xs space-y-2.5">
                     <div className="flex items-start justify-between gap-3">
@@ -745,7 +753,7 @@ export function BookingWidget({ packageOptions, basePrice, tourTitle }: BookingW
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex items-center space-x-2">
                         <div className="w-7 h-7 rounded-lg bg-brand-primary text-white flex items-center justify-center flex-shrink-0">
-                          <Sparkles className="w-4 h-4" />
+                          <ClipboardList className="w-4 h-4" />
                         </div>
                         <div>
                           <h4 className="text-sm font-bold text-neutral-900">
@@ -963,29 +971,31 @@ export function BookingWidget({ packageOptions, basePrice, tourTitle }: BookingW
                       Zero charge today. You can modify or cancel free of charge up to 24 hours before your tour departure.
                     </span>
                   </div>
+                </div>
 
-                  {/* Form Submission Buttons */}
-                  <div className="flex items-center justify-end space-x-3 pt-2">
-                    <button
-                      type="button"
-                      onClick={() => setIsModalOpen(false)}
-                      className="px-4 py-2.5 text-xs font-semibold text-neutral-600 hover:text-neutral-900 transition-colors"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      className="px-6 py-3 bg-brand-primary hover:bg-brand-hover text-white text-xs font-extrabold rounded-xl shadow-md transition-all flex items-center space-x-2 active:scale-95"
-                    >
-                      <Sparkles className="w-4 h-4 fill-current" />
-                      <span>Confirm & Hold Reservation</span>
-                      <ChevronRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </form>
-              ) : (
-                /* CONFIRMATION / TEAM REVIEW STATE */
-                <div className="space-y-5 animate-fadeIn">
+                {/* Sticky Form Action Footer */}
+                <div className="sticky bottom-0 z-20 bg-white border-t border-neutral-200 px-5 sm:px-6 py-3 sm:py-3.5 flex items-center justify-between sm:justify-end gap-3 pb-[max(14px,env(safe-area-inset-bottom))] shadow-[0_-4px_12px_rgba(0,0,0,0.05)] flex-shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => setIsModalOpen(false)}
+                    className="px-4 py-2.5 text-xs font-semibold text-neutral-600 hover:text-neutral-900 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-5 sm:px-6 py-2.5 sm:py-3 bg-brand-primary hover:bg-brand-hover text-white text-xs font-extrabold rounded-xl shadow-md transition-all flex items-center space-x-2 active:scale-95"
+                  >
+                    <CheckCircle2 className="w-4 h-4" />
+                    <span>Confirm & Hold Reservation</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </form>
+            ) : (
+              /* CONFIRMATION / TEAM REVIEW STATE */
+              <div className="flex flex-col flex-1 min-h-0 overflow-hidden">
+                <div className="p-5 sm:p-6 overflow-y-auto flex-1 space-y-5 overscroll-contain animate-fadeIn">
                   <div className="text-center space-y-2 py-2">
                     <div className="w-14 h-14 rounded-full bg-brand-light text-brand-primary flex items-center justify-center mx-auto shadow-sm">
                       <CheckCircle2 className="w-9 h-9" />
@@ -1121,31 +1131,32 @@ export function BookingWidget({ packageOptions, basePrice, tourTitle }: BookingW
                       <li>Check your email inbox ({lastBooking?.leadTraveler.email}) for your digital voucher.</li>
                     </ul>
                   </div>
-
-                  {/* Modal Action Buttons */}
-                  <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
-                    <button
-                      type="button"
-                      onClick={() => window.print()}
-                      className="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-neutral-300 hover:bg-neutral-50 text-xs font-semibold text-neutral-700 flex items-center justify-center space-x-1.5 transition-colors"
-                    >
-                      <Printer className="w-4 h-4" />
-                      <span>Print Summary</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => setIsModalOpen(false)}
-                      className="w-full sm:w-auto px-6 py-2.5 bg-brand-primary hover:bg-brand-hover text-white text-xs font-bold rounded-xl transition-colors shadow-sm"
-                    >
-                      Done & Return to Tour
-                    </button>
-                  </div>
                 </div>
-              )}
-            </div>
+
+                {/* Sticky Confirmed Action Footer */}
+                <div className="sticky bottom-0 z-20 bg-white border-t border-neutral-200 px-5 sm:px-6 py-3 sm:py-3.5 flex flex-col sm:flex-row items-center justify-between gap-3 pb-[max(14px,env(safe-area-inset-bottom))] shadow-[0_-4px_12px_rgba(0,0,0,0.05)] flex-shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => window.print()}
+                    className="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-neutral-300 hover:bg-neutral-50 text-xs font-semibold text-neutral-700 flex items-center justify-center space-x-1.5 transition-colors"
+                  >
+                    <Printer className="w-4 h-4" />
+                    <span>Print Summary</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setIsModalOpen(false)}
+                    className="w-full sm:w-auto px-6 py-2.5 bg-brand-primary hover:bg-brand-hover text-white text-xs font-bold rounded-xl transition-colors shadow-sm"
+                  >
+                    Done & Return to Tour
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

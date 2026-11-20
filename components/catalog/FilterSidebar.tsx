@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { FilterState } from "@/types/tour";
-import { Star, RotateCcw, Check, Sparkles, SlidersHorizontal, ChevronDown, ChevronUp, Search } from "lucide-react";
+import { Star, RotateCcw, Check, Flame, SlidersHorizontal, ChevronDown, ChevronUp, Search } from "lucide-react";
 
 interface FilterSidebarProps {
   filters: FilterState;
@@ -153,7 +153,7 @@ export function FilterSidebar({
             />
             <span className="font-medium flex items-center space-x-1">
               <span>Likely to Sell Out</span>
-              <Sparkles className="w-3.5 h-3.5 text-brand-accent fill-brand-accent" />
+              <Flame className="w-3.5 h-3.5 text-brand-accent fill-brand-accent" />
             </span>
           </label>
         </div>
