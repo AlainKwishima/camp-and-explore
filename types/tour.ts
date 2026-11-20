@@ -85,3 +85,48 @@ export interface FilterState {
   likelyToSellOutOnly: boolean;
   sortBy: "featured" | "price-asc" | "price-desc" | "rating" | "duration";
 }
+
+export interface SpecialRequirements {
+  // Food allergies & dietary restrictions
+  dietaryRestrictions: string[];
+  otherDietaryOrAllergies?: string;
+
+  // Special needs & accessibility
+  accessibilityNeeds: string[];
+  otherSpecialNeeds?: string;
+
+  // Items to bring & preparations
+  itemsToBringOrPrepare: string[];
+  equipmentOrLuggageNotes?: string;
+
+  // Other relevant information or requests
+  otherRequests?: string;
+}
+
+export interface CustomerBooking {
+  id: string; // e.g. "CE-2026-8492"
+  tourTitle: string;
+  packageId: string;
+  packageTitle: string;
+  departureDate: string;
+  departureTime: string;
+  adults: number;
+  children: number;
+  totalTravelers: number;
+  totalPrice: number;
+  currency: string;
+
+  // Lead customer contact
+  leadTraveler: {
+    fullName: string;
+    email: string;
+    phone: string;
+  };
+
+  // Special requirements captured for team review
+  specialRequirements: SpecialRequirements;
+
+  status: "confirmed" | "provisionally_held";
+  createdAt: string;
+}
+

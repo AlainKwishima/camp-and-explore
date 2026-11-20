@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Camera, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useLockBodyScroll } from "@/hooks/useLockBodyScroll";
 
 interface PhotoGalleryProps {
   images: string[];
@@ -12,6 +13,9 @@ interface PhotoGalleryProps {
 export function PhotoGallery({ images, tourTitle }: PhotoGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Lock background scroll when lightbox modal is active
+  useLockBodyScroll(lightboxOpen);
 
   // Keyboard navigation for lightbox
   useEffect(() => {
@@ -132,7 +136,7 @@ export function PhotoGallery({ images, tourTitle }: PhotoGalleryProps) {
         <div
           role="dialog"
           aria-modal="true"
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-6 text-white animate-fadeIn"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col justify-between p-4 sm:p-6 text-white animate-fadeIn overscroll-contain touch-none"
         >
           {/* Top Bar: Title & Close Button */}
           <div className="flex items-center justify-between z-10">
